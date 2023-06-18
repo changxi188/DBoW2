@@ -563,6 +563,7 @@ void TemplatedVocabulary<TDescriptor, F>::create(const std::vector<std::vector<T
 
     std::vector<pDescriptor> features;
     getFeatures(training_features, features);
+    std::cout << "new features size : " << features.size() << std::endl;
 
     // create root
     m_nodes.push_back(Node(0));  // root

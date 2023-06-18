@@ -76,6 +76,8 @@ void loadFeatures(vector<vector<cv::Mat> >& features)
         vector<cv::KeyPoint> keypoints;
         cv::Mat              descriptors;
 
+        // keypoints size is 500
+        // descriptor for each keypoint is 32 bytes
         orb->detectAndCompute(image, mask, keypoints, descriptors);
 
         features.push_back(vector<cv::Mat>());
@@ -100,7 +102,8 @@ void changeStructure(const cv::Mat& plain, vector<cv::Mat>& out)
 void testVocCreation(const vector<vector<cv::Mat> >& features)
 {
     // branching factor and depth levels
-    const int           k       = 9;
+    const int k = 9;
+    // L represent levels, from 0,1,2,3
     const int           L       = 3;
     const WeightingType weight  = TF_IDF;
     const ScoringType   scoring = L1_NORM;
@@ -110,6 +113,7 @@ void testVocCreation(const vector<vector<cv::Mat> >& features)
     cout << "Creating a small " << k << "^" << L << " vocabulary..." << endl;
     voc.create(features);
     cout << "... done!" << endl;
+    cout << "voc size : " << voc.size() << endl;
 
     cout << "Vocabulary information: " << endl << voc << endl << endl;
 
